@@ -1,4 +1,6 @@
-# Cohort-2.0
-This is a web dev course that i am completing to hone my kill in this field.
+Modified from featureUpdating branch
 
-This is a new line.
+
+This is a web dev course that Iam currently doing to hone my skill in this field.
+
+
