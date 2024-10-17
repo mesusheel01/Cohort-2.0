@@ -29,9 +29,6 @@ const isAnyUnhealthyKidney = ()=>{
 }
 
 
-
-
-
 // Get method will going to consultation to get a checkup
 app.get('/',(req,res)=>{
   //write logic
