@@ -1,5 +1,5 @@
 import {User} from '../db/index.js'
-import jwt form 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const userMiddleware = (req,res,next)=>{
   const token = req.headers.authorization

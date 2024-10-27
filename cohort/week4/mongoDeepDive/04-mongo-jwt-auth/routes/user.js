@@ -1,6 +1,8 @@
 import express from 'express';
 import userMiddleware from '../middleware/user.js';
 import { Courses, User } from '../db/index.js';
+import jwt from 'jsonwebtoken'
+
 
 const userRouter = express.Router();
 
@@ -21,6 +23,26 @@ userRouter.post('/signup', async (req, res) => {
   }
 });
 
+userRouter.post('/signin', async(req,res)=>{
+    const username = req.body.username
+    const password = req.body.password
+    const user = await User.find({username,password})
+
+    if(user){
+        try{
+            const token = jwt.sign({username}, process.env.jwtSecret)
+            res.status(200).json({
+                token
+            })
+        }catch(err){
+            console.log(err.message)
+        }
+    }else{
+        res.send("User not exist!")
+    }
+})
+
+
 userRouter.get('/courses', async (req, res) => {
   try {
     const courses = await Courses.find({});
@@ -31,7 +53,7 @@ userRouter.get('/courses', async (req, res) => {
 });
 
 userRouter.post('/courses/:courseId', userMiddleware, async (req, res) => {
-  console.log(req.username) 
+
 });
 
 userRouter.get('/purchasedCourses', userMiddleware, async (req, res) => {
